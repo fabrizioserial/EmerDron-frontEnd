@@ -105,7 +105,7 @@ function AboutUs(props) {
                     <Line/>
                 </Block>
                 <ProfileRow>
-                    <Card onClick={() => window.location.href ="https://www.linkedin.com/in/fabrizio-serial/"} target="_blank">
+                    <Card onClick={() => window.location.href ="https://www.linkedin.com/in/agustin-von-staszewski-86a512203/"} target="_blank">
                         <ImagenProfile src="https://media-exp1.licdn.com/dms/image/C5603AQHo6Vso5MrKIw/profile-displayphoto-shrink_800_800/0/1615217689305?e=1642636800&v=beta&t=PxKozoxu5FMNTdCDBHC7_uaIcsIZu5-K86mrgccLlYk"/>
                         <CardContent>
                             <div>
@@ -129,7 +129,7 @@ function AboutUs(props) {
                             </Linkedin>
                         </CardContent>
                     </Card>
-                    <Card onClick={() => window.location.href ="https://www.linkedin.com/in/fabrizio-serial/"} target="_blank">
+                    <Card onClick={() => window.location.href ="https://www.linkedin.com/in/mauro-kinderknecht/"} target="_blank">
                         <ImagenProfile src="https://media-exp1.licdn.com/dms/image/C4D03AQFOqeyT2hJMBw/profile-displayphoto-shrink_200_200/0/1623770492164?e=1641427200&v=beta&t=k9PyeJL4HY85KQrbj6DBgBwr-PyLXuLHvNCq8oZLjgY"/>
                         <CardContent>
                             <div>

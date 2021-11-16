@@ -110,7 +110,26 @@ const LoadingContainer = styled.div`
   align-items: center;
 `
 
-const BASE_URL = "http://912b-181-24-182-142.ngrok.io";
+const RefreshButton = styled.div`
+  position: absolute;
+  top: 10%;
+  left: 10px;
+  width: 100px;
+  height: 30px;
+  background-color: rgba(45, 177, 182, 0.38);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7cfcff;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover{
+    background-color:rgba(45, 177, 182, 0.5) ;
+  }
+`
+
+const BASE_URL = "http://822e-170-51-141-5.ngrok.io";
 
 export const Home = (props) => {
     const mapContainer = useRef(null);
@@ -124,10 +143,14 @@ export const Home = (props) => {
     const [location,setLocation] = useState(elements[0])
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        axios.get(`http://912b-181-24-182-142.ngrok.io/api/scan`).then((response) => {
+    const fetchDetections = () => {
+        axios.get(`${BASE_URL}/api/scan`).then((response) => {
             setElements(response.data)
         }).catch(e => console.log(e))
+    }
+
+    useEffect(() => {
+        fetchDetections()
         if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
@@ -177,12 +200,10 @@ export const Home = (props) => {
         try {
             const lat = coordinates[0];
             const long = coordinates[1];
-
-            const response =  axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lat},${long}.json?&access_token=pk.eyJ1IjoianNjYXN0cm8iLCJhIjoiY2s2YzB6Z25kMDVhejNrbXNpcmtjNGtpbiJ9.28ynPf1Y5Q8EyB_moOHylw`).then((res) =>
+            axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lat},${long}.json?&access_token=pk.eyJ1IjoianNjYXN0cm8iLCJhIjoiY2s2YzB6Z25kMDVhejNrbXNpcmtjNGtpbiJ9.28ynPf1Y5Q8EyB_moOHylw`).then((res) =>
             {
                 setPlace(res.data.features[0].place_name)
-            })
-
+            });
         } catch (e) {
 
         }
@@ -198,6 +219,7 @@ export const Home = (props) => {
     };
 
     const getMonth = (value) => {
+        // eslint-disable-next-line default-case
         switch (value ){
             case 0: return "January"
             case 1: return "February"
@@ -217,6 +239,9 @@ export const Home = (props) => {
     return (
         <HomeContainer>
                 <MapContainer ref={mapContainer} className="map-container"/>
+                <RefreshButton onClick={fetchDetections}>
+                    REFRESH
+                </RefreshButton>
             {
                 location && <Container>
                     <Header>
