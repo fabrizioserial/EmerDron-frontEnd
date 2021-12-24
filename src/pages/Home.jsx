@@ -129,7 +129,7 @@ const RefreshButton = styled.div`
   }
 `
 
-const BASE_URL = "http://822e-170-51-141-5.ngrok.io";
+const BASE_URL = "http://0029-181-24-182-142.ngrok.io";
 
 export const Home = (props) => {
     const mapContainer = useRef(null);
